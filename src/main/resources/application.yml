@@ -1,6 +1,9 @@
 server:
   port: 8081
 spring:
+  mvc:
+    path-match:
+      matching-strategy: ant_path_matcher
   datasource:
     url: jdbc:postgresql://localhost/db_parking
     username: postgres
@@ -10,3 +13,4 @@ spring:
     hibernate:
       ddl-auto: update
       format_sql: true
+
