@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/parking")
 public class ParkingController {
 
     private final ParkingService service;
@@ -21,7 +21,6 @@ public class ParkingController {
         this.service = service;
         this.mapper = mapper;
     }
-
     @GetMapping("/all")
     public ResponseEntity<List<ParkingDTO>> getAll(){
        List<ParkingDTO> response = service
@@ -31,7 +30,6 @@ public class ParkingController {
 
        return ResponseEntity.ok(response);
     }
-
     @PostMapping("/new")
     public ResponseEntity<ParkingDTO> createParking(@RequestBody Parking parking){
         parking = service.create(parking);
@@ -39,7 +37,6 @@ public class ParkingController {
 
         return ResponseEntity.ok(response);
     }
-
     @GetMapping("/{id}")
     public ResponseEntity<ParkingDTO> getId(@PathVariable("id") String id){
         Parking parking = service.findById(id);
@@ -47,12 +44,10 @@ public class ParkingController {
 
         return ResponseEntity.ok(response);
     }
-
     @GetMapping("/delete/{id}")
     public void deleteId(@PathVariable("id") String id){
         service.delete(id);
     }
-
     @PostMapping("/update/{id}")
     public ResponseEntity<ParkingDTO> updateId(@PathVariable("id") String id, @RequestBody Parking edit){
         Parking parking = service.updateParking(id, edit);
