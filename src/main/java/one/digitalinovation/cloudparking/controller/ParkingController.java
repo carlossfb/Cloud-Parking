@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/parking")
+@RequestMapping("/")
 public class ParkingController {
 
     private final ParkingService service;
@@ -21,7 +21,7 @@ public class ParkingController {
         this.service = service;
         this.mapper = mapper;
     }
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<ParkingDTO>> getAll(){
        List<ParkingDTO> response = service
                .findAll()
