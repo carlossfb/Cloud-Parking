@@ -4,6 +4,7 @@ import one.digitalinovation.cloudparking.entity.Parking;
 import one.digitalinovation.cloudparking.controller.dto.ParkingDTO;
 import one.digitalinovation.cloudparking.service.ParkingService;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,22 +23,40 @@ public class ParkingController {
     }
 
     @GetMapping("/all")
-    public List<ParkingDTO> getAll(){
-       return service.findAll()
+    public ResponseEntity<List<ParkingDTO>> getAll(){
+       List<ParkingDTO> response = service
+               .findAll()
                .stream()
                .map(this::toParkingDTO).toList();
+
+       return ResponseEntity.ok(response);
     }
 
     @PostMapping("/new")
-    public ParkingDTO createParking(@RequestBody Parking parking){
+    public ResponseEntity<ParkingDTO> createParking(@RequestBody Parking parking){
         parking = service.create(parking);
-        return toParkingDTO(parking);
+        ParkingDTO response = toParkingDTO(parking);
+
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/{id}")
-    public ParkingDTO getId(@PathVariable("id") String id){
+    public ResponseEntity<ParkingDTO> getId(@PathVariable("id") String id){
         Parking parking = service.findById(id);
-        return toParkingDTO(parking);
+        ParkingDTO response = toParkingDTO(parking);
+
+        return ResponseEntity.ok(response);
+    }
+    @RequestMapping("/delete/{id}")
+    public void deleteId(@PathVariable("id") String id){
+        service.delete(id);
+    }
+    @RequestMapping("/update/{id}")
+    public ResponseEntity<ParkingDTO> updateId(@PathVariable("id") String id, @RequestBody Parking edit){
+        Parking parking = service.updateParking(id, edit);
+        ParkingDTO response = toParkingDTO(parking);
+
+        return ResponseEntity.ok(response);
     }
 
 //    Aqui transformaremos cada parking em sua DTO

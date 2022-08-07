@@ -13,10 +13,8 @@ import java.util.UUID;
 public class Parking {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(updatable = false, unique = true, nullable = false)
-    private Long id;
-    private String uuid;
+    private String id;
     private String licence;
     private String state;
     private String model;
