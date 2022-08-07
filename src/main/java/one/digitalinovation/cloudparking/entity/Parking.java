@@ -22,4 +22,6 @@ public class Parking {
     private LocalDate entryDate;
     private LocalDate exitDate;
     private double bill;
+
+
 }
