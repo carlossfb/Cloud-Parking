@@ -47,10 +47,12 @@ public class ParkingController {
 
         return ResponseEntity.ok(response);
     }
+
     @GetMapping("/delete/{id}")
     public void deleteId(@PathVariable("id") String id){
         service.delete(id);
     }
+
     @PostMapping("/update/{id}")
     public ResponseEntity<ParkingDTO> updateId(@PathVariable("id") String id, @RequestBody Parking edit){
         Parking parking = service.updateParking(id, edit);

@@ -1,13 +1,20 @@
+# Aqui a porta padrão de inicialização da aplicação é alterada para não conflitar com a do postgresql
 server:
   port: 8081
+
 spring:
+#  A seguinte instrução é específica para bom funcionamento do Swagger
   mvc:
     path-match:
       matching-strategy: ant_path_matcher
+
+# Definindo a string de conexão com o banco e o usuário de conexão
   datasource:
     url: jdbc:postgresql://localhost/db_parking
     username: postgres
     password: root
+
+#Instruções responsáveis por mostrar o sql no console e permitir um autoupdate
   jpa:
     show-sql: true
     hibernate:
