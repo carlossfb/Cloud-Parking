@@ -12,6 +12,7 @@ import java.time.LocalDate;
 public class ParkingDTO {
 
     private String id;
+
     @Size(min = 3, message = "Digite uma licenca valida")
     @NotBlank(message = "Informe a licenca do veiculo")
     private String licence;

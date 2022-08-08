@@ -4,7 +4,6 @@ import one.digitalinovation.cloudparking.entity.Parking;
 import one.digitalinovation.cloudparking.controller.dto.ParkingDTO;
 import one.digitalinovation.cloudparking.service.ParkingService;
 import org.modelmapper.ModelMapper;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +11,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/parking")
 public class ParkingController {
 
     private final ParkingService service;
@@ -22,7 +21,7 @@ public class ParkingController {
         this.service = service;
         this.mapper = mapper;
     }
-    @GetMapping
+    @GetMapping("all")
     public ResponseEntity<List<ParkingDTO>> getAll(){
        List<ParkingDTO> response = service
                .findAll()
@@ -36,7 +35,7 @@ public class ParkingController {
         parking = service.create(parking);
         ParkingDTO response = toParkingDTO(parking);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        return ResponseEntity.ok(response);
     }
     @GetMapping("/{id}")
     public ResponseEntity<ParkingDTO> getId(@PathVariable("id") String id){
