@@ -3,6 +3,7 @@ package one.digitalinovation.cloudparking.service;
 import one.digitalinovation.cloudparking.entity.Parking;
 import one.digitalinovation.cloudparking.exception.ParkingNotFoundException;
 import one.digitalinovation.cloudparking.repository.ParkingRepository;
+import one.digitalinovation.cloudparking.util.DateFormatter;
 import org.springframework.stereotype.Service;
 
 import javax.validation.Valid;
@@ -30,7 +31,8 @@ public class ParkingService {
 
         String uuid = getUUID();
         parkingCreate.setId(uuid);
-        parkingCreate.setEntryDate(LocalDateTime.now().toLocalDate());
+
+        parkingCreate.setEntryDate(LocalDateTime.now());
         parkingRepository.save(parkingCreate);
         return parkingCreate;
     }
@@ -62,6 +64,16 @@ public class ParkingService {
     public void delete(String id){
         findById(id);
         parkingRepository.deleteById(id);
+    }
+
+    public Parking checkout(String id){
+        Parking checkoutID = findById(id);
+        checkoutID.setExitDate(LocalDateTime.now());
+
+        double value = ParkingCheckOut.getBillID(checkoutID);
+        checkoutID.setBill(value);
+
+        return parkingRepository.save(checkoutID);
     }
 
     private static String getUUID(){

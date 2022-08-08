@@ -5,7 +5,7 @@ import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -29,8 +29,8 @@ public class ParkingDTO {
     @NotBlank(message = "Informe a cor do veiculo")
     private String color;
 
-    private LocalDate entryDate;
-    private LocalDate exitDate;
+    private LocalDateTime entryDate;
+    private LocalDateTime exitDate;
     private double bill;
 
 }

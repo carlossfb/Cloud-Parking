@@ -71,6 +71,15 @@ public class ParkingController {
         return ResponseEntity.ok(response);
     }
 
+    @ApiOperation("Checkout Parking by ID")
+    @PostMapping("/checkout/{id}")
+    public ResponseEntity<ParkingDTO> checkoutId(@PathVariable("id") String id){
+        Parking parking = service.checkout(id);
+        ParkingDTO response = toParkingDTO(parking);
+
+        return ResponseEntity.ok(response);
+    }
+
 //    Aqui transformaremos cada parking em sua DTO
     private ParkingDTO toParkingDTO(Parking parking){
         return mapper.map(parking, ParkingDTO.class);

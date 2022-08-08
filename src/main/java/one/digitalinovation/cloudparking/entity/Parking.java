@@ -4,8 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.UUID;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -19,8 +18,8 @@ public class Parking {
     private String state;
     private String model;
     private String color;
-    private LocalDate entryDate;
-    private LocalDate exitDate;
+    private LocalDateTime entryDate;
+    private LocalDateTime exitDate;
     private double bill;
 
 
