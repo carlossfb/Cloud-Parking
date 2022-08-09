@@ -38,7 +38,7 @@ Documentação:
 #### Deleta um veículo
 
 ```http
-  DELETE /aluno/excluir/{id}
+  DELETE /parking/delete/{id}
 ```
 
 | Parâmetro   | Tipo       | Descrição                           |
